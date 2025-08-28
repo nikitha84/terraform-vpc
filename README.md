@@ -1,0 +1,1 @@
+Here we are create terraform VPC modules,along with inputs & outpputs keep configuration in variables.make sure use tags, naming convension then test mosules in dev environment once its created successfuly push into github.
