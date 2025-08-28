@@ -17,10 +17,12 @@ resource "aws_vpc_peering_connection" "peering" {
 resource "aws_route" "acceptor_route" {  #adding acceptor route
   count = var.is_peering_required && var.acceptor_vpc_id == "" ? 1 : 0 #if acceptor vpc empty
   route_table_id            = data.aws_route_table.default.id
-  destination_cidr_block    = "0.0.0.0/0" #roboshop vpc
+  destination_cidr_block    = var.vpc_cidr  #roboshop vpc
   vpc_peering_connection_id = aws_vpc_peering_connection.peering[0].id
-  
+ 
 }
+
+
 resource "aws_route" "public_peering" {  #adding acceptor route
   count = var.is_peering_required && var.acceptor_vpc_id == "" ? 1 : 0 #if acceptor vpc empty
   route_table_id            = aws_route_table.public.id
